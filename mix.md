@@ -447,4 +447,194 @@
 
                 '?'.length; // 2, редкий китайский иероглиф
 
-    Суррогатные пары не учитывались при создании JS и методы строк charCodeAt / fromCharCode обрабатывают их некорректно. Правильно работают с суррогатными парами редкие методы String.fromCodePoint и str.codePointAt, которые появились в языке недавно.        
+    Суррогатные пары не учитывались при создании JS и методы строк charCodeAt / fromCharCode обрабатывают их некорректно. Правильно работают с суррогатными парами редкие методы String.fromCodePoint и str.codePointAt, которые появились в языке недавно.   
+
+
+15. Методы массивов в JavaScript?
+
+    1. some()
+
+    Этот метод проверяет, удовлетворяет ли какой-либо элемент массива условию, заданному в передаваемой функции. Он вернет значение true, если хотя бы один элемент совпадет с проверяемой функцией, и значение false — если нет.
+
+            const myAwesomeArray = ["a", "b", "c", "d", "e"]
+
+            myAwesomeArray.some(test => test === "d")
+            //-------> Output : true
+
+    2. reduce()
+
+    Этот метод принимает функцию, которая имеет в качестве аргумента аккумулятор и значение. Он применяет функцию к аккумулятору и каждому значению массива, чтобы в результате вернуть только одно значение.
+
+            const myAwesomeArray = [1, 2, 3, 4, 5]
+
+            myAwesomeArray.reduce((total, value) => total * value)
+            // 1 * 2 * 3 * 4 * 5
+            //-------> Output = 120
+
+    3. every()
+
+    Этот метод проверяет, удовлетворяют ли все элементы массива условию, заданному в передаваемой функции. Он вернет значение true, если каждый элемент совпадет с проверяемой функцией, и значение false — если нет.
+
+            const myAwesomeArray = ["a", "b", "c", "d", "e"]
+
+            myAwesomeArray.every(test => test === "d")
+            //-------> Output : false
+
+            const myAwesomeArray2 = ["a", "a", "a", "a", "a"]
+
+            myAwesomeArray2.every(test => test === "a")
+            //-------> Output : true
+
+    4. map()
+
+    Этот метод принимает функцию в качестве параметра и создает новый массив с результатом вызова указанной функции для каждого элемента массива. Он всегда будет возвращать одинаковое количество элементов.
+
+            const myAwesomeArray = [5, 4, 3, 2, 1]
+            myAwesomeArray.map(x => x * x)
+
+            //-------> Output : 25
+            //                  16
+            //                  9
+            //                  4
+            //                  1
+
+
+    5. flat()
+
+    Этот метод принимает в качестве аргумента массив массивов и сглаживает вложенные массивы в массив верхнего уровня. Обратите внимание, что этот метод работает только для одного уровня.
+
+            const myAwesomeArray = [[1, 2], [3, 4], 5]
+
+            myAwesomeArray.flat()
+            //-------> Output : [1, 2, 3, 4, 5]
+
+    6. filter()
+
+    Этот метод принимает функцию в качестве параметра и возвращает новый массив, содержащий все элементы массива, для которого функция фильтрации передавалась в качестве аргумента, и возвращает ее со значением true.
+
+            const myAwesomeArray = [
+            { id: 1, name: "john" },
+            { id: 2, name: "Ali" },
+            { id: 3, name: "Mass" },
+            { id: 4, name: "Mass" },
+            ]
+
+            myAwesomeArray.filter(element => element.name === "Mass")
+            //-------> Output : 0:{id: 3, name: "Mass"},
+            //                  1:{id: 4, name: "Mass"}
+
+    7. forEach()
+
+    Этот метод применяет функцию к каждому элементу массива.
+
+            const myAwesomeArray = [
+            { id: 1, name: "john" },
+            { id: 2, name: "Ali" },
+            { id: 3, name: "Mass" },
+            ]
+
+            myAwesomeArray.forEach(element => console.log(element.name))
+            //-------> Output : john
+            //                  Ali
+            //                  Mass
+
+    8. findIndex()
+
+    Этот метод принимает функцию в качестве параметра и в дальнейшем применяет ее к массиву. Он возвращает индекс найденного элемента, если элемент удовлетворяет условию проверяющей функции, переданной в качестве аргумента. Если не удовлетворяет, возвращается –1.
+
+            const myAwesomeArray = [
+            { id: 1, name: "john" },
+            { id: 2, name: "Ali" },
+            { id: 3, name: "Mass" },
+            ]
+
+            myAwesomeArray.findIndex(element => element.id === 3)
+            //-------> Output : 2
+
+            myAwesomeArray.findIndex(element => element.id === 7)
+            //-------> Output : -1
+
+    9. find()
+
+    Этот метод принимает функцию в качестве аргумента и в дальнейшем применяет ее к массиву. Он возвращает значение элемента, найденного в массиве, если элемент удовлетворяет условию проверяющей функции. В противном случае оно возвращается со значением undefined.
+
+            const myAwesomeArray = [
+            { id: 1, name: "john" },
+            { id: 2, name: "Ali" },
+            { id: 3, name: "Mass" },
+            ]
+
+            myAwesomeArray.find(element => element.id === 3)
+            //-------> Output : {id: 3, name: "Mass"}
+
+            myAwesomeArray.find(element => element.id === 7)
+            //-------> Output : undefined
+
+    10. sort()
+
+    Этот метод принимает функцию в качестве параметра. Он сортирует элементы массива и возвращает их.
+
+            const myAwesomeArray = [5, 4, 3, 2, 1]
+
+            // Sort from smallest to largest
+            myAwesomeArray.sort((a, b) => a - b)
+            //-------> Output : [1, 2, 3, 4, 5]
+
+            // Sort from largest to smallest
+            myAwesomeArray.sort((a, b) => b - a)
+            //-------> Output : [5, 4, 3, 2, 1]
+
+    11. concat()
+
+    Этот метод объединяет два или более массива/значения и возвращает новый массив.
+
+            const myAwesomeArray = [1, 2, 3, 4, 5]
+            const myAwesomeArray2 = [10, 20, 30, 40, 50]
+            myAwesomeArray.concat(myAwesomeArray2)
+            //-------> Output : [1, 2, 3, 4, 5, 10, 20, 30, 40, 50]
+
+    12. fill()
+
+    Этот метод заполняет все элементы массива одинаковым значением, от начального индекса (по умолчанию 0) до конечного индекса (по умолчанию array.length).
+
+            const myAwesomeArray = [1, 2, 3, 4, 5]
+
+            // The first argument (0) is the value
+            // The second argument (1) is the starting index
+            // The third argument (3) is the ending index
+            myAwesomeArray.fill(0, 1, 3)
+            //-------> Output : [1, 0, 0, 4, 5]
+
+    13. includes()
+
+    Этот метод возвращает значение true, если массив содержит определенный элемент, и значение false — если нет.
+
+            const myAwesomeArray = [1, 2, 3, 4, 5]
+
+            myAwesomeArray.includes(3)
+            //-------> Output : true
+
+            myAwesomeArray.includes(8)
+            //-------> Output : false
+
+    14. reverse()
+
+    Этот метод меняет порядок следования элементов в массиве на обратный. Первый элемент становится последним, а последний — первым.
+
+            const myAwesomeArray = ["e", "d", "c", "b", "a"]
+
+            myAwesomeArray.reverse()
+            //-------> Output : ['a', 'b', 'c', 'd', 'e']
+
+    15. flatMap()
+
+    Этот метод применяет функцию к каждому элементу массива, а затем сглаживает результат в новый массив. Он объединяет метод flat() и метод map() в одну функцию.
+
+            const myAwesomeArray = [[1], [2], [3], [4], [5]]
+
+            myAwesomeArray.flatMap(arr => arr * 10)
+            //-------> Output : [10, 20, 30, 40, 50]
+
+            // With .flat() and .map()
+            myAwesomeArray.flat().map(arr => arr * 10)
+            //-------> Output : [10, 20, 30, 40, 50]
