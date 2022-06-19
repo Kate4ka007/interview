@@ -1067,7 +1067,14 @@
         const obj = Object.create(Object.prototype);
         // эквивалентно этому:
         // const obj = {};
-        
+
     Создание объекта без прототипа:
 
         const obj = Object.create(null);
+
+29. Как проверить, является ли значение массивом?
+
+    Метод Array. isArray() возвращает true , если объект является массивом и false , если он массивом не является.
+
+    const re = [1, 2, 3]
+    Object.prototype.toString.call(re) === '[object Array]'
