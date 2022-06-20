@@ -1,0 +1,19 @@
+{
+  "name": "inter",
+  "version": "1.0.0",
+  "description": "",
+  "main": "test.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Kate4ka007/inter.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Kate4ka007/inter/issues"
+  },
+  "homepage": "https://github.com/Kate4ka007/inter#readme"
+}
