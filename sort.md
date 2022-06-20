@@ -132,3 +132,18 @@
             return res
           }
           bifurcateArray(array)
+
+8. Каррирование 
+
+        function multiply(a, b, c) {
+          return a * b * c;
+        }
+
+        function multiply(a) {
+            return (b) => {
+                return (c) => {
+                    return a * b * c
+                }
+            }
+        }
+        log(multiply(1)(2)(3)) // 6
