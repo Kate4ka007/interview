@@ -78,8 +78,18 @@ function quickSort(arr) {
       right.push(arr[i]);
     }
   }
-  return quickSort(left).concat(pivot, quickSort(right));
+  return [...quickSort(left), pivot, ...quickSort(right)];
 }
 
 
-console.log(quickSort([2,6,3,7,1,5,9,8,4]))
+// console.log(quickSort([2,6,3,7,1,5,9,8,4]))
+
+
+const mult = (a) => {
+  return (b) => {
+    return (c) => {
+      return a * b* c
+    }
+  }
+}
+console.log(mult(1)(2)(3))
