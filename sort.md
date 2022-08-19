@@ -66,11 +66,11 @@
    * Быстрая сортировка
    	Считается одним из самых быстрых алгоритмов сортировки. Как и сортировка слиянием, работает по принципу «разделяй и властвуй». Временная сложность алгоритма может достигать O(n log n).
 
-        function quickSort(arr) {
-          if (arr.length < 2) return arr;
-          let pivot = arr[0];
-          const left = [];
-          const right = [];
+          function quickSort(arr) {
+            if (arr.length < 2) return arr;
+            let pivot = arr[0];
+            const left = [];
+            const right = [];
             
           for (let i = 1; i < arr.length; i++) {
             if (pivot > arr[i]) {

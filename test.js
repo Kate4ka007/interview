@@ -93,3 +93,120 @@ const mult = (a) => {
   }
 }
 console.log(mult(1)(2)(3))
+
+
+function binarySearch(arr, wanted) {
+  // Границы подмассива для поиска
+  let start = 0;
+  let end = arr.length - 1;
+
+  while (start <= end) {
+
+          // центр подмассива
+      let middle = start + Math.floor((end - start) / 2);
+      if (comparator(arr[middle], wanted) === 0) return middle;
+
+     // выбираем нужную половину
+      if (comparator(arr[middle], wanted) < 0) start = middle + 1;
+      else end = middle - 1;
+  }
+
+  return -1; // ничего не нашлось
+}
+
+
+function conBin(number) {
+  let num = number;
+  let binary = (num%2).toString() 
+  for (; num > 1; ) {
+    num = parseInt( num/2)
+    binary = (num%2) + (binary)    
+  }
+  console.log(binary);
+}
+
+
+function bubbleSort(arr) {
+let newArr = arr;
+for (let i = 0; i < newArr.length; i++) {
+  for (let j = 0; j < newArr.length; j++) {
+    if(newArr[i]<newArr[j]) {
+      let data = newArr[j]
+      newArr[j] = newArr[i]
+      newArr[i] = data
+    }
+  }  
+}
+return newArr;
+}
+
+
+const parseString = (string) => {
+  return string
+        .split('?')[1]
+        .split('&')[0]
+        .reduce((acc, item)=> ({...acc, [item.split('=')[0]]:[item.split['='][1]]}, {}))
+}
+
+
+const qickSort = (arr) => {
+  if(arr.length<2 ) {
+    return arr
+  }
+  let pivot = arr[0]
+  let left = []
+  let right = []
+
+  for (let i = 1; i < arr.length; i++) {
+    if(arr[i] < pivot) {
+      left.push(arr[i])
+    } else {
+      right.push(arr[i])
+    }    
+  }
+  return [qickSort(...left), pivot, qickSort(...right)]
+}
+
+
+const insert = (arr) => {
+  for (let i = 1; i < arr.length; i++) {
+   for (let j = i - 1; j > -1; j--) {
+    if(arr[j]> arr[j+1]) {
+      [arr[j + 1], arr[j]] =  [arr[j], arr[j + 1]]
+    }
+   }    
+  } return arr
+}
+
+const merge = (left, right) => {
+let sortArray = []
+while(left.length&&right.length) {
+  if(left[0] > right[0]){
+    sortArray.push(right.shift(0))
+  } else {
+    sortArray.push(left.shift(0))
+  }
+}
+return [...sortArray, ...left, ...right]
+}
+
+const sorting = (arr) => {
+  if(arr.length< 2) {
+    return arr
+  }
+
+  let half = arr.length/2
+  let left = arr.splice(0, half)
+  let right = arr
+
+  let array = merge(sorting(left), sorting(right))
+  return array
+}
+
+const multipp = (a) => {
+  return (b) => {
+    return (c) => {
+      return a + b + c
+    }
+  }
+}
