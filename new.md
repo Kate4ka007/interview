@@ -38,8 +38,12 @@ TDZ: термин для описания состояния, когда пер�
    - Object.entries(obj) - Returns an array containing nested arrays for each key-value pair. The first element in each nested array is the key, and the second is the value. 
      Eg:
 
-          obj = { a: 1, b: "b", c: [3,4,5] }Object.entries(obj)
+          obj = { a: 1, b: "b", c: [3,4,5] } 
+          Object.entries(obj)
           >> [["a",1], ["b","b"], ["c",[3,4,5]]
+
+
+   - Object.assign() - Copies a source objects properties to a target object       
 
    - Object.fromEntries(arr) - Creates a new object from an array of key-value pairs passed as the argument. Returns the new object.   
 
@@ -243,3 +247,291 @@ This event occurs when any CSS animation repeats itself. With this event, we can
 
 - animationend
 It fires when the CSS animation comes to an end in the program. This is useful when we want to act just after the animation process finishes.      
+
+
+
+
+9. Property flags & descriptors (student is able to set property via Object. defineProperty)
+
+Object properties, besides a value, have three special attributes (so-called “flags”):
+
+writable – if true, the value can be changed, otherwise it’s read-only.
+enumerable – if true, then listed in loops, otherwise not listed.
+configurable – if true, the property can be deleted and these attributes can be modified, otherwise not.
+
+      let user = {};
+
+      Object.defineProperty(user, "name", {
+        value: "John"
+      });
+
+      let descriptor = Object.getOwnPropertyDescriptor(user, 'name');
+
+      alert( JSON.stringify(descriptor, null, 2 ) );
+      /*
+      {
+        "value": "John",
+        "writable": false,
+        "enumerable": false,
+        "configurable": false
+      }
+      */
+
+
+      let user = {
+        name: "John",
+        toString() {
+          return this.name;
+        }
+      };
+
+      Object.defineProperty(user, "toString", {
+        enumerable: false
+      });
+
+      // Now our toString disappears:
+      for (let key in user) alert(key); // name
+
+
+
+      * Object.preventExtensions(obj): Forbids the addition of new properties to the object.
+   
+      * Object.seal(obj): Forbids adding/removing of properties. Sets configurable: false for all existing properties.
+
+      * Object.freeze(obj): Forbids adding/removing/changing of properties. Sets configurable: false, writable: false for all existing properties.
+
+
+
+
+
+10.  Create iterable objects, Symbol.iterator usage
+
+          let range = {
+            from: 1,
+            to: 5
+          };
+
+          range[simbol.iterator] = function() {
+            return {
+              current: this.from,
+              last: this.to,
+
+              next(){
+                if(this.current<= this.last) {
+                  return {done: false, value: this.current++}
+
+                } else {
+                  return {done: true}
+                }
+              }
+            }
+          }
+
+          for (let num of range) {
+            alert(num); // 1, then 2, 3, 4, 5
+          }
+
+11. loop through Object keys
+
+        const courses = {
+            java: 10,
+
+            javascript: 55,
+
+            nodejs: 5,
+
+            php: 15
+        };
+
+        const keys = Object.keys(courses);        
+
+        keys.forEach((key) => {
+            console.log(`${key}: ${courses[key]}`);
+        });
+
+        // java: 10
+
+        // javascript: 55
+
+        // nodejs: 5
+
+        // php: 15
+
+12.  how to flatten nested array
+
+
+           let array = [[[0], [1]], [[2], [3]], [[4], [5]]];
+           let flattend = array.join(",").split(",");
+           console.log(flattend);
+
+          function flatten(ary, ret = []) {
+              for (const entry of ary) {
+                  if (Array.isArray(entry) {
+                      flatten(entry, ret);
+                  } else {
+                      ret.push(entry);
+                  }
+              }
+              return ret;
+          }
+          console.log(flatten([[[0], [1]], [[2], [3]], [[4], [5]]]));
+
+
+          function flatten(ary, ret = []) {
+              return ary.reduce((ret, entry) => {
+                  if (Array.isArray(entry)) {
+                      flatten(entry, ret);
+                  } else {
+                      ret.push(entry);
+                  }
+                  return ret;
+              }, ret);
+          }
+          console.log(flatten([[[0], [1]], [[2], [3]], [[4], [5]]]));
+
+
+          function flatten(a) {
+              return Array.isArray(a) ? [].concat(...a.map(flatten)) : a;
+          }
+
+
+13. filter Array elements
+
+const colours = ['green', 'black', 'dark-orange', 'light-yellow', 'azure'];
+
+const result = colours.filter(colour => colour.length > 6);
+
+console.log(result); // --> [ 'dark-orange', 'light-yellow' ]
+
+
+14.  to custom sorting for Array
+...
+
+15. Know global scope and functional scope
+
+ -The global scope is the scope that contains, and is visible in, all other scopes
+
+...
+16. Know variables visibility areas
+
+The four scopes are:
+    Global - visible by everything.
+    Function - visible within a function (and its sub-functions and blocks)
+    Block - visible within a block (and its sub-blocks)
+    Module - visible within a module.
+
+
+17. Understand nested scopes and able work with them
+
+In JavaScript, scopes are created by code blocks, functions, modules. 
+While const and let variables are scoped by code blocks, functions or modules, var variables are scoped only by functions or modules.
+Scopes can be nested. Inside an inner scope you can access the variables of an outer scope
+
+18.  Difference between parameters passing by value and by reference. 
+     Passing by reference means the called functions' parameter will be the same as the callers' passed argument (not the value, but the identity - the variable itself). Pass by value means the called functions' parameter will be a copy of the callers' passed argument.
+
+19. how to handle dynamic amount of Function parameters
+    const variableArguments = (...args) => {
+      console.log(...args);
+    }; 
+
+20.  Function default parameters
+
+...
+21. ECMA script modules
+
+...
+22. Know how to use spread operator for Function arguments
+
+...
+23. Be able to compare arguments and rest parameters
+
+
+...
+24. Spread operator for Array
+
+...
+25. Understand and able to use spread operator for Array concatenation Destructuring assignment
+
+...
+26. Be able to discover destructuring assignment concept
+
+        const HIGH_TEMPERATURES = {
+          yesterday: 75,
+          today: 77,
+          tomorrow: 80
+        };
+
+        //ES6 assignment syntax
+        const {today, tomorrow} = HIGH_TEMPERATURES;
+
+        //ES5 assignment syntax
+        const today = HIGH_TEMPERATURES.today;
+        const tomorrow = HIGH_TEMPERATURES.tomorrow;
+
+
+        let [a, b, c] = "abc";
+
+
+        let [one, two, three] = new Set([1, 2, 3]);
+
+        let user = {};
+        [user.name, user.surname] = "John Smith".split(' ');
+
+
+        let user = {
+          name: "John",
+          age: 30
+        };
+        // loop over keys-and-values
+        for (let [key, value] of Object.entries(user)) {
+          alert(`${key}:${value}`); // name:John, then age:30
+        }
+
+        let guest = "Jane";
+        let admin = "Pete";
+        // Let's swap the values: make guest=Pete, admin=Jane
+        [guest, admin] = [admin, guest];
+        alert(`${guest} ${admin}`); // Pete Jane (successfully swapped!)
+
+
+        let [name1, name2, ...rest] = ["Julius", "Caesar", "Consul", "of the Roman Republic"];
+
+
+        // default values
+        let [name = "Guest", surname = "Anonymous"] = ["Julius"];
+
+
+        let options = {
+          title: "Menu",
+          width: 100,
+          height: 200
+        };
+        let {title, width, height} = options;
+
+
+        // { sourceProperty: targetVariable }
+        let {width: w, height: h, title} = options;
+
+        // width -> w
+        // height -> h
+        // title -> title
+
+        let options = {
+          title: "Menu",
+          height: 200,
+          width: 100
+        };
+
+        // title = property named title
+        // rest = object with the rest of properties
+        let {title, ...rest} = options;
+        // now title="Menu", rest={height: 200, width: 100}
+
+27. Understand variables and Function arguments destructuring assignment
+
+...
+28. String templates
+
+...
+29. Know how for..of loop works (optional)        
