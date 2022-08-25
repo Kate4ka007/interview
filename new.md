@@ -437,18 +437,48 @@ Scopes can be nested. Inside an inner scope you can access the variables of an o
 
 20.  Function default parameters
 
-...
+        function multiply(a, b) {
+          b = (typeof b !== 'undefined') ?  b : 1
+          return a * b
+        }
+
+        function multiply(a, b = 1) {
+          return a * b
+        }
+
+
 21. ECMA script modules
 
-...
+
 22. Know how to use spread operator for Function arguments
 
 ...
 23. Be able to compare arguments and rest parameters
 
-
 ...
 24. Spread operator for Array
+
+        // Merge Array
+        [...array1, ...array2]
+
+        // Clone Array
+        [...array]
+
+        // String → Array
+        [...'string']
+
+        // Set  → Array
+        [...new Set([1,2,3])]
+
+        // Node List → Array
+        [...nodeList]
+
+        // Arguments → Array
+        [...arguments]
+
+        array = [1, 2, 3, 4, 5];
+        var minimum = Math.min(...array);
+        var maximum = Math.max(...array);
 
 ...
 25. Understand and able to use spread operator for Array concatenation Destructuring assignment
@@ -465,19 +495,12 @@ Scopes can be nested. Inside an inner scope you can access the variables of an o
         //ES6 assignment syntax
         const {today, tomorrow} = HIGH_TEMPERATURES;
 
-        //ES5 assignment syntax
-        const today = HIGH_TEMPERATURES.today;
-        const tomorrow = HIGH_TEMPERATURES.tomorrow;
-
-
         let [a, b, c] = "abc";
-
 
         let [one, two, three] = new Set([1, 2, 3]);
 
         let user = {};
         [user.name, user.surname] = "John Smith".split(' ');
-
 
         let user = {
           name: "John",
@@ -530,8 +553,212 @@ Scopes can be nested. Inside an inner scope you can access the variables of an o
 
 27. Understand variables and Function arguments destructuring assignment
 
-...
+        const myFoods = {a: 'apple', b: 'banana', c: 'carrot', d: 'donut'}
+        const { a, b, c, d} = myFoods
+        const {a = `apple didn't exist`, b, c, d} = myFoods
+
+
 28. String templates
 
-...
+        const classes = `header ${ isLargeScreen() ? '' :
+          `icon-${item.isCollapsed ? 'expander' : 'collapser'}` }`;
+
+
 29. Know how for..of loop works (optional)        
+
+    use with String, Array, array-like objects (e.g., arguments or NodeList), TypedArray, Map, Set, and user-defined iterables
+
+    const iterable = [10, 20, 30];
+
+    for (const value of iterable) {
+      console.log(value);
+    }
+
+    for (let value of iterable) {
+      value += 1;
+      console.log(value);
+    }
+
+30. this scope
+
+...
+
+31. Reference Type & losing this
+
+...
+
+
+32. Understand difference between function and method
+
+...
+
+
+33. Understand how this works, realize this possible issues
+
+...
+
+
+34. Manage this scope
+
+...
+
+
+35. Be able to replace this scope
+
+...
+
+
+36. Be able to use call and apply Function built-in methods  
+
+...
+
+
+37. Immediately invoked functional expression (IIFE) (optional)
+
+...
+
+
+38. Know IIFE pattern (optional)
+
+...
+
+
+39. Callback (Function as argument)
+
+...
+
+
+40. Know callback pattern
+
+...
+
+
+41. Understand callback limitations (callback hell) (optional)
+
+...
+
+
+42. Binding, binding one function twice
+
+...
+
+
+43. Know how to bind this scope to function
+
+...
+
+
+44. Carrying and partial functions
+
+...
+
+
+45. Fetch (with usage)
+
+...
+
+
+46. XMLHTTPRequest (concept) (optional)
+
+...
+
+
+47. WebSocket (concept) (optional)
+
+...
+
+
+48. Web components, shadow DOM (concept) (optional)
+
+...
+
+
+49. Timezones (optional)
+
+...
+
+
+50. Internationalization js (Intl) (optional)
+
+...
+
+
+51. Context (lexical environment)
+
+...
+
+
+52. Understand function creation context (lexical environment)
+
+...
+
+
+53. Be able to explain difference between scope and context
+
+...
+
+
+54. Inner/outer lexical environment
+
+...
+
+
+55. Understand lexical environment traversing mechanism
+
+...
+
+
+56. Understand connection between function and lexical environment
+
+...
+
+
+57. new keyword
+
+...
+
+
+58. Understand how new keyword works
+
+...
+
+
+59. Function constructor
+
+...
+
+
+60. Know function constructor concept
+
+...
+
+
+61. Able to create constructor functions
+
+...
+
+
+62. Public, private, static members
+
+...
+
+
+63. Know how to create public members
+
+...
+
+
+64. Know how to create private members
+
+...
+
+
+65. Know how to create static members
+
+...
+
+
+66. Understand OOP emulation patterns and conventions
+
+...
+
