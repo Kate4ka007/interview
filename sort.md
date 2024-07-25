@@ -147,3 +147,37 @@
             }
         }
         log(multiply(1)(2)(3)) // 6
+
+9. Быстрая сортировка (leedcode)
+
+        function sortArray(nums: number[]): number[] {
+            if (nums === null || nums.length === 0) {
+                return nums;
+            }
+        
+            let minVal: number = nums[0];
+            let maxVal: number = nums[0];
+            
+            for (let i = 1; i < nums.length; i++) {
+                if (nums[i] < minVal) minVal = nums[i];
+                if (nums[i] > maxVal) maxVal = nums[i];
+            }
+        
+            let range: number = maxVal - minVal + 1;
+            const counts: number[] = new Array(range).fill(0);
+        
+            for (let i = 0; i < nums.length; i++) {
+                let idx = nums[i] - minVal;
+                counts[idx]++;
+            }
+        
+            let index = 0;
+            for (let i = 0; i < range; i++) {
+                while (counts[i]) {
+                    nums[index++] = i + minVal;
+                    counts[i]--;
+                }
+            }
+        
+            return nums;
+        };
